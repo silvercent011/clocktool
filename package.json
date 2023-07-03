@@ -1,0 +1,30 @@
+{
+  "name": "clocktool",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@types/node": "^18",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "nuxt": "^3.6.1",
+    "nuxt-quasar-ui": "^2.0.2",
+    "prettier": "2.8.8"
+  },
+  "dependencies": {
+    "@auth/core": "^0.9.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@hebilicious/authjs-nuxt": "^0.1.0",
+    "@quasar/extras": "^1.16.4",
+    "quasar": "^2.12.1"
+  }
+}
