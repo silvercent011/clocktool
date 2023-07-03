@@ -38,4 +38,14 @@ export default defineNuxtConfig({
       "node_modules/@panva/hkdf/dist/web/index.js"
     ),
   },
+
+  nitro: {
+    storage: {
+      data: {
+        driver: "vercelKV",
+        url: process.env.NUXT_KV_REST_API_URL,
+        token: process.env.NUXT_KV_REST_API_TOKEN,
+      },
+    },
+  },
 });

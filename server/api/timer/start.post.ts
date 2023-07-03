@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const { issue_key } = await readBody(event);
+  const { issue_key, email } = await readBody(event);
 
   const { public: publicConfig } = useRuntimeConfig();
 
@@ -17,6 +17,10 @@ export default defineEventHandler(async (event) => {
       Authorization: "Token " + clockworkApiToken,
     },
   });
+
+  const storage = useStorage("data");
+
+  storage.setItem(`lastTimerStatus:${email}:${issue_key}`, `running`);
 
   return payload;
 });

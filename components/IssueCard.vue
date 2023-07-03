@@ -5,22 +5,33 @@ const props = defineProps<{
   issue: Issue;
 }>();
 
+const { session } = useAuth();
+
 const { data } = await useLazyAsyncData(props.issue.id, () =>
   fetchIssueData(props.issue.id)
+);
+
+const { data: status, refresh: refreshStatus } = await useFetch(
+  "/api/timer/status",
+  {
+    query: { issue_key: props.issue.key, email: session.value.user.email },
+  }
 );
 
 async function Start() {
   const { data } = await useFetch("/api/timer/start", {
     method: "POST",
-    body: { issue_key: props.issue.key },
+    body: { issue_key: props.issue.key, email: session.value.user.email },
   });
+  refreshStatus();
 }
 
 async function Stop() {
   const { data } = await useFetch("/api/timer/stop", {
     method: "POST",
-    body: { issue_key: props.issue.key },
+    body: { issue_key: props.issue.key, email: session.value.user.email },
   });
+  refreshStatus();
 }
 </script>
 
@@ -58,6 +69,7 @@ async function Stop() {
         icon="play_arrow"
         class="q-mr-sm"
         @click="Start"
+        v-if="status !== 'running'"
       />
       <q-btn
         flat
@@ -67,6 +79,7 @@ async function Stop() {
         icon="stop"
         class="q-mr-sm"
         @click="Stop"
+        v-if="status === 'running'"
       />
     </q-card-actions>
   </q-card>
