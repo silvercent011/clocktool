@@ -1,13 +1,14 @@
 import { NuxtAuthHandler } from "#auth";
-import AtlassianProvider from "@auth/core/providers/atlassian";
-import type { AuthConfig } from "@auth/core/types";
+import { AuthOptions } from "next-auth";
+import AtlassianProvider from "next-auth/providers/atlassian";
 
 const runtimeConfig = useRuntimeConfig();
 
-export const authOptions: AuthConfig = {
+export const authOptions: AuthOptions = {
   secret: runtimeConfig.authJs.secret,
   providers: [
-    AtlassianProvider({
+    // @ts-expect-error
+    AtlassianProvider.default({
       clientId: runtimeConfig.atlassian.clientId,
       clientSecret: runtimeConfig.atlassian.clientSecret,
       authorization: {
@@ -20,4 +21,4 @@ export const authOptions: AuthConfig = {
   ],
 };
 
-export default NuxtAuthHandler(authOptions, runtimeConfig);
+export default NuxtAuthHandler(authOptions);

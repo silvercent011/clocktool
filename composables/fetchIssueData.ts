@@ -5,7 +5,7 @@ export const fetchIssueData = async (issueId: string) => {
 
   const { jiraApiToken, jiraSubdomain } = publicConfig;
 
-  const { session } = useAuth();
+  const { data: session } = useAuth();
 
   const jqlQuery = `assignee = currentUser()`;
 
@@ -14,7 +14,7 @@ export const fetchIssueData = async (issueId: string) => {
     {
       headers: {
         Authorization: `Basic ${Buffer.from(
-          `${session.value.user.email}:${jiraApiToken}`
+          `${session.value?.user?.email}:${jiraApiToken}`
         ).toString("base64")}`,
       },
       query: {
