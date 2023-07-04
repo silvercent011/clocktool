@@ -16,8 +16,8 @@ function signInWithAtlassian() {
       <Toolbar />
     </q-header>
 
-    <q-page-container class="q-pa-lg">
-      <div class="column flex-center height-full">
+    <q-page-container class="q-pa-lg window-height">
+      <div class="column flex-center full-height">
         <q-btn
           color="primary"
           icon-right="fa-brands fa-atlassian"

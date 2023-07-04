@@ -53,6 +53,7 @@ async function Stop() {
     </q-card-section>
     <q-card-actions>
       <q-btn
+        disable
         flat
         dense
         color="primary"

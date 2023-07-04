@@ -1,8 +1,6 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <q-header bordered class="bg-primary text-white q-pa-sm">
-      <Toolbar />
-    </q-header>
+  <q-layout view="lHh LpR fFf">
+    <Toolbar />
 
     <q-page-container class="q-pa-md">
       <slot />
