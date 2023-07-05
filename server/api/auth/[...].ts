@@ -19,6 +19,24 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async session({ session, token, user }) {
+      // @ts-ignore
+      session.user.id = token.id;
+      // @ts-ignore
+      session.accessToken = token.accessToken;
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (user) {
+        token.id = user.id;
+      }
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
+  },
 };
 
 export default NuxtAuthHandler(authOptions);
